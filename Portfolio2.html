@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reeha Kolagani | Frontend Developer</title>
+  <link rel="icon" href="shinchan.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"> 
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script> 
+  <style>
+    body {
+      background: linear-gradient(45deg, #eaf2f8, #ffffff);
+      background-size: 400% 400%;
+      animation: gradientAnimation 10s ease infinite;
+    }
+    @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+    header {
+      background: #004466;
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 50px;
+    }
+    h1, h2 {
+      color: #004466;
+    }
+
+    a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+    .section {
+      background: #fff;
+      margin-top: 20px;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    ul {
+      padding-left: 20px;
+    }
+    .project-img-wrapper {
+      display: flex;
+      justify-content: center;
+      margin: 10px 0;
+    }
+    .project-img {
+      width: 70%;
+      max-width: 100%;
+      height: 500px;
+      display: block;
+      margin: 10px auto;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+    .project-img:hover {
+      transform: scale(1.1);
+    }
+    .btn-resume {
+      background-color: #004466;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 16px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .btn-resume:hover {
+      background-color: #006699;
+      transform: scale(1.1);
+    }
+
+    .lazy-image {
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+      transform: translateY(20px);
+    }
+    .lazy-image.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .lazy-load {
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .lazy-load.visible {
+      opacity: 1;
+    }
+    .about-me-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-direction: column;
+      text-align: center;
+    }
+    .about-me-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    footer {
+      background-color: #004466;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 50px;
+    }
+    footer .social-icons i {
+      margin: 0 10px;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+    footer .social-icons a:hover {
+      color: #006699;
+    }
+    footer .copyright {
+      font-size: 0.9rem;
+      margin-top: 15px;
+    }
+    .accordion-button {
+      background-color: #004466;
+      color: #fff;
+    }
+    .accordion-button:not(.collapsed) {
+      background-color: #006699;
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+  <header class="w-100">
+    <h1 style="color: white;">Reeha Kolagani</h1>
+    <p>Frontend Developer</p>
+    <p><a href="mailto:reehakolagani@gmail.com" class="text-white"><i class="fas fa-envelope"></i> reehakolagani@gmail.com</a> | <i class="fas fa-phone"></i> (732) 343-2416</p>
+    <p>
+      <a href="https://www.linkedin.com/in/reeha-kolagani/" target="_blank" title="https://www.linkedin.com/in/reeha-kolagani/" class="text-white"><i class="fab fa-linkedin"></i> LinkedIn</a> |
+      <a href="https://github.com/KolaganiReeha" target="_blank" title="https://github.com/KolaganiReeha" class="text-white"><i class="fab fa-github"></i> GitHub</a>
+    </p>
+  </header>
+
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #004466;">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="#">Reeha Kolagani</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#projects">Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#about-me">About Me</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#skills">Skills</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#experience">Experience</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#education">Education</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container-fluid">
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+      <div>
+        <h3><a href="https://kolaganireeha.github.io/weatherApp/" target="_blank">Weather App <i class="fas fa-link"></i></a></h3>
+        <p>React, Bootstrap, Axios</p>
+        <p>Real-time weather app using OpenWeatherMap API with dynamic UI and error handling.</p>
+        <img data-src="weatherApp.png" class="lazy-image project-img" alt="Weather App Screenshot" />
+      </div>
+      <div>
+        <h3><a href="https://kolaganireeha.github.io/Expense-Tracker/" target="_blank">Expense Tracker <i class="fas fa-link"></i></a></h3>
+        <p>JavaScript, HTML, CSS</p>
+        <p>Tracks user expenses with local storage, balance updates, and responsive design.</p>
+        <img data-src="Expense-Tracker.png" class="lazy-image project-img" alt="Expense Tracker Screenshot" />
+      </div>
+      <div>
+        <h3><a href="https://kolaganireeha.github.io/Resume-Builder/" target="_blank">Resume Builder <i class="fas fa-link"></i></a></h3>
+        <p>JavaScript, HTML, CSS, html2pdf.js</p>
+        <p>Drag-and-drop resume builder with live preview and downloadable PDF export.</p>
+        <img data-src="ResumeBuilder.png" class="lazy-image project-img" alt="Resume Builder Screenshot" />
+      </div>
+      <div>
+        <h3><a href="https://kolaganireeha.github.io/Quiz-App/" target="_blank">Quiz App <i class="fas fa-link"></i></a></h3>
+        <p>JavaScript, HTML, CSS</p>
+        <p>Simple quiz application with countdown timer and interactive UI.</p>
+        <img data-src="Quiz.png" class="lazy-image project-img" alt="Quiz App Screenshot" />
+      </div>
+    </section>
+
+    <section id="about-me" class="section lazy-load" data-aos="fade-up" data-aos-duration="1000">
+      <h2>About Me</h2>
+      <div class="about-me-wrapper">
+        <img src="pic.jpg" alt="Reeha Kolagani" class="about-me-img">
+        <p>
+          I'm a Frontend Developer with experience in building scalable, responsive web applications using React, Angular,
+          and modern JavaScript. I specialize in performance optimization, intuitive UI/UX, and REST API integration.
+          Currently pursuing an MS in Computer Science with a perfect 4.0 GPA and backed by hands-on internship experience
+          and industry certifications.
+        </p>
+        <p><a href="https://drive.google.com/uc?export=download&id=11kct_UXz9Rhi6eMiLAr7M2pbcCfpo8LT" target="_blank" class="btn-resume">Download My Resume</a></p>
+      </div>
+    </section>
+
+    <section id="skills" class="section lazy-load" data-aos="fade-up" data-aos-duration="1000">
+      <h2>Technical Skills</h2>
+      <div class="accordion" id="skillsAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Languages
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#skillsAccordion">
+            <div class="accordion-body">
+              <ul>
+                <li>JavaScript (ES6+)</li>
+                <li>TypeScript</li>
+                <li>Java</li>
+                <li>Python</li>
+                <li>C</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Web Development
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#skillsAccordion">
+            <div class="accordion-body">
+              <ul>
+                <li>React</li>
+                <li>Angular</li>
+                <li>React Native</li>
+                <li>Tailwind CSS</li>
+                <li>Bootstrap</li>
+                <li>SASS</li>
+                <li>GraphQL</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Tools
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#skillsAccordion">
+            <div class="accordion-body">
+              <ul>
+                <li>Git</li>
+                <li>Jenkins</li>
+                <li>Postman</li>
+                <li>Kibana</li>
+                <li>Figma</li>
+                <li>Trello</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              Databases & Testing
+            </button>
+          </h2>
+          <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#skillsAccordion">
+            <div class="accordion-body">
+              <ul>
+                <li>SQL</li>
+                <li>PostgreSQL</li>
+                <li>Jest</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section lazy-load" data-aos="fade-up" data-aos-duration="1000">
+      <h2>Certifications</h2>
+      <ul>
+        <li>Java Data Structures & Algorithms (Coursera)</li>
+        <li>Full-Stack Web Development Bootcamp</li>
+        <li>Modern React with Redux and Material UI</li>
+        <li>Angular with NgRx</li>
+      </ul>
+    </section>
+
+    <section id="experience" class="section lazy-load" data-aos="fade-up" data-aos-duration="1000">
+      <h2>Experience</h2>
+      <div class="accordion" id="experienceAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingFive">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+              Frontend Developer Intern - GBCS Group, USA (May 2024 - Jan 2025)
+            </button>
+          </h2>
+          <div id="collapseFive" class="accordion-collapse collapse show" aria-labelledby="headingFive" data-bs-parent="#experienceAccordion">
+            <div class="accordion-body">
+              <ul>
+                <li>Built UI components for RFP platform "Voop" in React, boosting engagement by 20%</li>
+                <li>Reduced load time by 30% via lazy loading & performance tuning</li>
+                <li>Integrated REST APIs with improved exception handling (15% fewer errors)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingSix">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+              Java Full Stack Developer - IBM, India (May 2022 - Jun 2023)
+            </button>
+          </h2>
+          <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#experienceAccordion">
+            <div class="accordion-body">
+              <ul>
+                <li>Contributed to YONO banking app using Spring Boot & Angular</li>
+                <li>Built secure, reusable REST APIs and collaborated in AWS deployment</li>
+                <li>Developed frontend Angular components with NgRx state management</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingSeven">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+              Frontend Intern - Pantech Solutions, India (Nov 2020 - Jan 2022)
+            </button>
+          </h2>
+          <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#experienceAccordion">
+            <div class="accordion-body">
+              <ul>
+                <li>Created single-page apps with AngularJS; improved load speed by 25%</li>
+                <li>Implemented responsive UIs and optimized code for performance</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+      <section id="education" class="section lazy-load" data-aos="fade-up" data-aos-duration="1000">
+      <h2>Education</h2>
+      <p>
+        <strong>Master of Science in Computer Science</strong><br />
+        University of Alabama at Birmingham (GPA: 4.0/4.0)<br />
+        Aug 2023 - May 2025<br />
+        Courses: Algorithms, DB Dev, Statistics, Database Systems
+      </p>
+    </section>
+  </div>
+
+
+  </div>
+
+  <footer>
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/reeha-kolagani/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/KolaganiReeha" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="mailto:reehakolagani@gmail.com" title="reehakolagani@gmail.com"><i class="fas fa-envelope"></i></a>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 Reeha Kolagani. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script> <!-- AOS Library -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    AOS.init(); 
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const lazyElements = document.querySelectorAll('.lazy-load, .lazy-image');
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            if (entry.target.classList.contains('lazy-image')) {
+              const src = entry.target.getAttribute('data-src');
+              entry.target.setAttribute('src', src);  
+            }
+            observer.unobserve(entry.target);  
+          }
+        });
+      }, { threshold: 0.5 });
+
+      lazyElements.forEach(element => {
+        observer.observe(element);
+      });
+    });
+    particlesJS("particles-js", {
+      particles: {
+        number: {
+          value: 50,
+          density: {
+            enable: true,
+            value_area: 800
+          }
+        },
+        color: {
+          value: "#ff9a9e"
+        },
+        shape: {
+          type: "circle",
+          stroke: {
+            width: 0,
+            color: "#000000"
+          }
+        },
+        opacity: {
+          value: 0.5,
+          random: true,
+          anim: {
+            enable: true,
+            speed: 1,
+            opacity_min: 0.1
+          }
+        },
+        size: {
+          value: 3,
+          random: true,
+          anim: {
+            enable: true,
+            speed: 40,
+            size_min: 0.1
+          }
+        },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#ff9a9e",
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 3
+        }
+      },
+      interactivity: {
+        events: {
+          onhover: {
+            enable: true,
+            mode: "repulse"
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
