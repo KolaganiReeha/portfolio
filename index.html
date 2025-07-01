@@ -552,7 +552,7 @@
       document.querySelectorAll(".project-img").forEach((img) => {
         img.addEventListener("click", function () {
           modal.style.display = "block";
-          modalImg.src = this.getAttribute("src") || this.getAttribute("data-src");
+          modalImg.src = this.getAttribute("data-src");
         });
       });
 
