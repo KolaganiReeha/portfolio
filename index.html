@@ -65,9 +65,11 @@
       border-radius: 10px;
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease;
+      will-change: transform;
     }
     .project-img:hover {
-      transform: scale(1.1);
+      /* transform: translateY(0) scale(1.1); */
+      cursor: pointer;
     }
     .btn-resume {
       background-color: #004466;
@@ -88,13 +90,18 @@
 
     .lazy-image {
       opacity: 0;
-      transition: opacity 0.5s ease-in-out;
+      /* transition: opacity 0.5s ease-in-out; */
       transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
     }
     .lazy-image.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
+    .lazy-image.visible.project-img:hover {
+        transform: translateY(0) scale(1.1);
+        cursor: pointer;
+      }
     .lazy-load {
       opacity: 0;
       transition: opacity 1s ease-in-out;
@@ -143,6 +150,63 @@
     .accordion-button:not(.collapsed) {
       background-color: #006699;
     }
+    @media (max-width: 768px) {
+      .project-img-wrapper {
+        flex-direction: column;
+        align-items: center;
+      }
+      .project-img {
+        width: 70%;
+        height: 200px;
+      }
+      .project-img:hover {
+      /* transform: translateY(0) scale(1.1); */
+      cursor: pointer;
+      }
+    }
+    .modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 8px;
+  animation: zoom 0.3s ease;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+@keyframes zoom {
+  from {transform: scale(0.8);}
+  to {transform: scale(1);}
+}
+
+.close {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.close:hover {
+  color: #bbb;
+}
   </style>
 </head>
 <body>
@@ -193,25 +257,25 @@
         <h3><a href="https://kolaganireeha.github.io/weatherApp/" target="_blank">Weather App <i class="fas fa-link"></i></a></h3>
         <p>React, Bootstrap, Axios</p>
         <p>Real-time weather app using OpenWeatherMap API with dynamic UI and error handling.</p>
-        <img data-src="weatherApp.png" class="lazy-image project-img" alt="Weather App Screenshot" />
+        <img data-src="weatherApp.png" class="lazy-image project-img" alt="Weather App Screenshot" data-aos="fade-up" data-aos-duration="1000" />
       </div>
       <div>
         <h3><a href="https://kolaganireeha.github.io/Expense-Tracker/" target="_blank">Expense Tracker <i class="fas fa-link"></i></a></h3>
         <p>JavaScript, HTML, CSS</p>
         <p>Tracks user expenses with local storage, balance updates, and responsive design.</p>
-        <img data-src="Expense-Tracker.png" class="lazy-image project-img" alt="Expense Tracker Screenshot" />
+        <img data-src="Expense-Tracker.png" class="lazy-image project-img" alt="Expense Tracker Screenshot" data-aos="fade-up" data-aos-duration="1000"/>
       </div>
       <div>
         <h3><a href="https://kolaganireeha.github.io/Resume-Builder/" target="_blank">Resume Builder <i class="fas fa-link"></i></a></h3>
         <p>JavaScript, HTML, CSS, html2pdf.js</p>
         <p>Drag-and-drop resume builder with live preview and downloadable PDF export.</p>
-        <img data-src="ResumeBuilder.png" class="lazy-image project-img" alt="Resume Builder Screenshot" />
+        <img data-src="ResumeBuilder.png" class="lazy-image project-img" alt="Resume Builder Screenshot" data-aos="fade-up" data-aos-duration="1000"/>
       </div>
       <div>
         <h3><a href="https://kolaganireeha.github.io/Quiz-App/" target="_blank">Quiz App <i class="fas fa-link"></i></a></h3>
         <p>JavaScript, HTML, CSS</p>
         <p>Simple quiz application with countdown timer and interactive UI.</p>
-        <img data-src="Quiz.png" class="lazy-image project-img" alt="Quiz App Screenshot" />
+        <img data-src="Quiz.png" class="lazy-image project-img" alt="Quiz App Screenshot" data-aos="fade-up" data-aos-duration="1000"/>
       </div>
     </section>
 
@@ -225,7 +289,7 @@
           Currently pursuing an MS in Computer Science with a perfect 4.0 GPA and backed by hands-on internship experience
           and industry certifications.
         </p>
-        <p><a href="https://drive.google.com/uc?export=download&id=11kct_UXz9Rhi6eMiLAr7M2pbcCfpo8LT" target="_blank" class="btn-resume">Download My Resume</a></p>
+        <p><a href="https://github.com/KolaganiReeha/portfolio/raw/master/KReehaResume.pdf" target="_blank" class="btn-resume">Download My Resume</a></p>
       </div>
     </section>
 
@@ -479,6 +543,33 @@
         }
       }
     });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const modal = document.getElementById("imageModal");
+      const modalImg = document.getElementById("modalImage");
+      const closeBtn = document.querySelector(".close");
+
+      document.querySelectorAll(".project-img").forEach((img) => {
+        img.addEventListener("click", function () {
+          modal.style.display = "block";
+          modalImg.src = this.getAttribute("src") || this.getAttribute("data-src");
+        });
+      });
+
+      closeBtn.onclick = function () {
+        modal.style.display = "none";
+      };
+
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+    });
   </script>
+  <div id="imageModal" class="modal" style="display: none;">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage" alt="Expanded project screenshot">
+  </div>
 </body>
 </html>
