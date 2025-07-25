@@ -9,6 +9,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"> 
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <style>
     body {
       background: linear-gradient(45deg, #eaf2f8, #ffffff);
@@ -32,6 +33,25 @@
       text-align: center;
       padding: 40px 20px;
       margin-top: 50px;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+    }
+    header #particles-header, footer #particles-footer{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: auto;
+    }
+    header h1,
+    header p,
+    header a,
+    footer a{
+      position: relative;
+      z-index: 1;
     }
     h1, h2 {
       color: #004466;
@@ -68,7 +88,6 @@
       will-change: transform;
     }
     .project-img:hover {
-      /* transform: translateY(0) scale(1.1); */
       cursor: pointer;
     }
     .btn-resume {
@@ -90,7 +109,6 @@
 
     .lazy-image {
       opacity: 0;
-      /* transition: opacity 0.5s ease-in-out; */
       transform: translateY(20px);
       transition: opacity 0.5s ease, transform 0.5s ease;
     }
@@ -125,6 +143,8 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
     footer {
+      position: relative;
+      min-height: 150px;
       background-color: #004466;
       color: #fff;
       text-align: center;
@@ -160,7 +180,6 @@
         height: 200px;
       }
       .project-img:hover {
-      /* transform: translateY(0) scale(1.1); */
       cursor: pointer;
       }
     }
@@ -175,7 +194,7 @@
     height: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.9);
-}
+    }
 
 .modal-content {
   margin: auto;
@@ -207,90 +226,78 @@
 .close:hover {
   color: #bbb;
 }
-  </style>
+
+#particles-header, #particles-footer{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+nav a:hover{
+  transform: scale(1.1);
+}
+
+.typed-title {
+  display: inline-block;
+  color: white;
+  font-size: 1.25rem;
+  line-height: 1;
+  white-space: nowrap;
+  vertical-align: top;
+}
+</style>
+
 </head>
 <body>
-  <div id="particles-js" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
   <header class="w-100">
+    <div id="particles-header"></div>
     <h1 style="color: white;">Reeha Kolagani</h1>
-    <p>Frontend Developer</p>
-    <p><a href="mailto:reehakolagani@gmail.com" class="text-white"><i class="fas fa-envelope"></i> reehakolagani@gmail.com</a> | <i class="fas fa-phone"></i> (732) 343-2416</p>
-    <p>
+    <span id="typed-text" class="typed-title"></span>
+    <div><a href="mailto:reehakolagani@gmail.com" class="text-white"><i class="fas fa-envelope"></i> reehakolagani@gmail.com</a> | <i class="fas fa-phone"></i> (732) 343-2416</div>
+    <div>
       <a href="https://www.linkedin.com/in/reeha-kolagani/" target="_blank" title="https://www.linkedin.com/in/reeha-kolagani/" class="text-white"><i class="fab fa-linkedin"></i> LinkedIn</a> |
       <a href="https://github.com/KolaganiReeha" target="_blank" title="https://github.com/KolaganiReeha" class="text-white"><i class="fab fa-github"></i> GitHub</a>
-    </p>
+    </div>
   </header>
 
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #004466;">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" style="background-color: #004466;">
   <div class="container-fluid">
-    <a class="navbar-brand text-white" href="#">Reeha Kolagani</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#projects">Projects</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#about-me">About Me</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#skills">Skills</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#experience">Experience</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#education">Education</a>
-        </li>
-      </ul>
+    <div class="d-flex w-100 justify-content-between">
+      <a class="nav-link text-white flex-fill text-center fs-4" href="#">Reeha Kolagani</a>
+      <a class="nav-link text-white flex-fill text-center fs-4" href="#projects">Projects</a>
+      <a class="nav-link text-white flex-fill text-center fs-4" href="#about-me">About Me</a>
+      <a class="nav-link text-white flex-fill text-center fs-4" href="#skills">Skills</a>
+      <a class="nav-link text-white flex-fill text-center fs-4" href="#experience">Experience</a>
+      <a class="nav-link text-white flex-fill text-center fs-4" href="#education">Education</a>
     </div>
   </div>
 </nav>
-
-
-  <div class="container-fluid">
-    <section id="projects" class="section">
-      <h2>Projects</h2>
-      <div>
-        <h3><a href="https://kolaganireeha.github.io/weatherApp/" target="_blank">Weather App <i class="fas fa-link"></i></a></h3>
-        <p>React, Bootstrap, Axios</p>
-        <p>Real-time weather app using OpenWeatherMap API with dynamic UI and error handling.</p>
-        <img data-src="weatherApp.png" class="lazy-image project-img" alt="Weather App Screenshot" data-aos="fade-up" data-aos-duration="1000" />
-      </div>
-      <div>
-        <h3><a href="https://kolaganireeha.github.io/Expense-Tracker/" target="_blank">Expense Tracker <i class="fas fa-link"></i></a></h3>
-        <p>JavaScript, HTML, CSS</p>
-        <p>Tracks user expenses with local storage, balance updates, and responsive design.</p>
-        <img data-src="Expense-Tracker.png" class="lazy-image project-img" alt="Expense Tracker Screenshot" data-aos="fade-up" data-aos-duration="1000"/>
-      </div>
-      <div>
-        <h3><a href="https://kolaganireeha.github.io/Resume-Builder/" target="_blank">Resume Builder <i class="fas fa-link"></i></a></h3>
-        <p>JavaScript, HTML, CSS, html2pdf.js</p>
-        <p>Drag-and-drop resume builder with live preview and downloadable PDF export.</p>
-        <img data-src="ResumeBuilder.png" class="lazy-image project-img" alt="Resume Builder Screenshot" data-aos="fade-up" data-aos-duration="1000"/>
-      </div>
-      <div>
-        <h3><a href="https://kolaganireeha.github.io/Quiz-App/" target="_blank">Quiz App <i class="fas fa-link"></i></a></h3>
-        <p>JavaScript, HTML, CSS</p>
-        <p>Simple quiz application with countdown timer and interactive UI.</p>
-        <img data-src="Quiz.png" class="lazy-image project-img" alt="Quiz App Screenshot" data-aos="fade-up" data-aos-duration="1000"/>
-      </div>
-    </section>
 
     <section id="about-me" class="section lazy-load" data-aos="fade-up" data-aos-duration="1000">
       <h2>About Me</h2>
       <div class="about-me-wrapper">
         <img src="pic.jpg" alt="Reeha Kolagani" class="about-me-img">
-        <p>
-          I'm a Frontend Developer with experience in building scalable, responsive web applications using React, Angular,
-          and modern JavaScript. I specialize in performance optimization, intuitive UI/UX, and REST API integration.
-          Currently pursuing an MS in Computer Science with a perfect 4.0 GPA and backed by hands-on internship experience
-          and industry certifications.
+        <p style="text-align: center;">
+          I'm a Frontend Developer with experience in building responsive web applications using React, Next.js, and JavaScript (ES6+). Proven 
+          expertise in UI/UX optimization (20%+ user interaction improvement), performance tuning (30% page load reduction), and REST 
+          API integration. Master of Science in Computer Science candidate at the University of Alabama at Birmingham. Certified in Modern 
+          React with Redux, Material UI, Angular with NgRx, and Full-Stack Web Development.
         </p>
         <p><a href="https://github.com/KolaganiReeha/portfolio/raw/master/KReehaResume.pdf" target="_blank" class="btn-resume">Download My Resume</a></p>
       </div>
+    </section>
+
+    <section id="education" class="section lazy-load" data-aos="fade-up" data-aos-duration="1000">
+      <h2>Education</h2>
+      <p>
+        <strong>Master of Science in Computer Science</strong><br />
+        University of Alabama at Birmingham (GPA: 4.0/4.0)<br />
+        Aug 2023 - May 2025<br />
+        Courses: Algorithms, DB Dev, Statistics, Database Systems
+      </p>
     </section>
 
     <section id="skills" class="section lazy-load" data-aos="fade-up" data-aos-duration="1000">
@@ -372,16 +379,6 @@
       </div>
     </section>
 
-    <section class="section lazy-load" data-aos="fade-up" data-aos-duration="1000">
-      <h2>Certifications</h2>
-      <ul>
-        <li>Java Data Structures & Algorithms (Coursera)</li>
-        <li>Full-Stack Web Development Bootcamp</li>
-        <li>Modern React with Redux and Material UI</li>
-        <li>Angular with NgRx</li>
-      </ul>
-    </section>
-
     <section id="experience" class="section lazy-load" data-aos="fade-up" data-aos-duration="1000">
       <h2>Experience</h2>
       <div class="accordion" id="experienceAccordion">
@@ -435,22 +432,61 @@
       </div>
     </section>
 
+    <div class="container-fluid">
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+      <div class="section lazy-load" data-aos="fade-up" data-aos-duration="1000">
+        <h3><a href="https://kolaganireeha.github.io/quickCart/" target="_blank">QuickCart E-commerce Web App<i class="fas fa-link"></i></a></h3>
+        <p>React, Bootstrap, Pagination, Lazy Loading</p>
+        <p>Designed and built a fully responsive e-commerce web app with React and React Router, enabling users to browse, filter, and search products fetched dynamically from DummyJSON API with pagination and routing.  Engineered real-time cart functionality including quantity updates, subtotal calculations, and a checkout process using React hooks 
+          and component state, enhancing shopping flow and reducing UI friction and styled with bootstrap and SEO-friendly HTML tags. </p>
+        <img data-src="quickCart.png" class="lazy-image project-img" alt="Weather App Screenshot" data-aos="fade-up" data-aos-duration="1000" />
+      </div>
+      <div class="section lazy-load" data-aos="fade-up" data-aos-duration="1000">
+        <h3><a href="https://kolaganireeha.github.io/weatherApp/" target="_blank">Weather App <i class="fas fa-link"></i></a></h3>
+        <p>React, Bootstrap, Axios</p>
+        <p>Developed a responsive react weather application using the OpenWeatherMap API to fetch the real-time weather data. Enhanced UX with dynamic backgrounds that update based on weather conditions and intuitive icons for metrics like temperature, 
+          humidity, wind speed, visibility, and sunrise/sunset times. Used React hooks for state management & side effects. Implemented error handling and enhanced accessibility with ARIA labels and responsive layout and optimized API calls.</p>
+        <img data-src="weatherApp.png" class="lazy-image project-img" alt="Weather App Screenshot" data-aos="fade-up" data-aos-duration="1000" />
+      </div>
+      <div class="section lazy-load" data-aos="fade-up" data-aos-duration="1000">
+        <h3><a href="https://kolaganireeha.github.io/Expense-Tracker/" target="_blank">Expense Tracker <i class="fas fa-link"></i></a></h3>
+        <p>JavaScript, HTML, CSS</p>
+        <p> Created a responsive expense tracker with CRUD functionality using vanilla JavaScript and DOM manipulation. Implemented local storage to persist user data across sessions, eliminating the need for backend dependencies. Designed a UI 
+          with dynamic table rendering, category filtering, and real-time total balance calculation. Added form validation and error handling 
+          for user inputs and styled with CSS3 for a clean, mobile-friendly layout (shadows, borders, and responsive grids). </p>
+        <img data-src="Expense-Tracker.png" class="lazy-image project-img" alt="Expense Tracker Screenshot" data-aos="fade-up" data-aos-duration="1000"/>
+      </div>
+      <div class="section lazy-load" data-aos="fade-up" data-aos-duration="1000">
+        <h3><a href="https://kolaganireeha.github.io/Resume-Builder/" target="_blank">Resume Builder <i class="fas fa-link"></i></a></h3>
+        <p>JavaScript, HTML, CSS, html2pdf.js</p>
+        <p>Designed an interactive resume generator with real-time preview and PDF export functionality. Implemented drag-and
+        drop reordering of resume sections for customizable layouts & designed Modern/Classic templates with responsive CSS grids. Integrated html2pdf.js to generate downloadable, print-friendly resumes.Added form validation and photo upload features.</p>
+        <img data-src="ResumeBuilder.png" class="lazy-image project-img" alt="Resume Builder Screenshot" data-aos="fade-up" data-aos-duration="1000"/>
+      </div>
+      <div class="section lazy-load" data-aos="fade-up" data-aos-duration="1000">
+        <h3><a href="https://kolaganireeha.github.io/Quiz-App/" target="_blank">Quiz App <i class="fas fa-link"></i></a></h3>
+        <p>JavaScript, HTML, CSS</p>
+        <p>Simple quiz application with countdown timer and interactive UI.</p>
+        <img data-src="Quiz.png" class="lazy-image project-img" alt="Quiz App Screenshot" data-aos="fade-up" data-aos-duration="1000"/>
+      </div>
+    </section>
 
-      <section id="education" class="section lazy-load" data-aos="fade-up" data-aos-duration="1000">
-      <h2>Education</h2>
-      <p>
-        <strong>Master of Science in Computer Science</strong><br />
-        University of Alabama at Birmingham (GPA: 4.0/4.0)<br />
-        Aug 2023 - May 2025<br />
-        Courses: Algorithms, DB Dev, Statistics, Database Systems
-      </p>
+    <section class="section lazy-load" data-aos="fade-up" data-aos-duration="1000">
+      <h2>Certifications</h2>
+      <ul>
+        <li>Java Data Structures & Algorithms (Coursera)</li>
+        <li>Full-Stack Web Development Bootcamp</li>
+        <li>Modern React with Redux and Material UI</li>
+        <li>Angular with NgRx</li>
+      </ul>
     </section>
   </div>
-
 
   </div>
 
   <footer>
+    <div id="particles-footer"></div>
     <div class="social-icons">
       <a href="https://www.linkedin.com/in/reeha-kolagani/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
       <a href="https://github.com/KolaganiReeha" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
@@ -461,7 +497,7 @@
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script> <!-- AOS Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script> 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     AOS.init(); 
@@ -485,7 +521,7 @@
         observer.observe(element);
       });
     });
-    particlesJS("particles-js", {
+    particlesJS("particles-header",{
       particles: {
         number: {
           value: 50,
@@ -535,13 +571,104 @@
         }
       },
       interactivity: {
+        detect_on: "canvas",
         events: {
           onhover: {
             enable: true,
             mode: "repulse"
+          },
+          onclick: {
+            enable: true,
+            mode: "push"
+          },
+          resize: true
+        },
+        modes: {
+          repulse: {
+            distance: 100,
+            duration: 0.4
+          },
+          push: {
+            particles_nb: 4
           }
+        }  
+      },
+      retina_detect: true
+    });
+
+     particlesJS("particles-footer",{
+      particles: {
+        number: {
+          value: 50,
+          density: {
+            enable: true,
+            value_area: 800
+          }
+        },
+        color: {
+          value: "#ff9a9e"
+        },
+        shape: {
+          type: "circle",
+          stroke: {
+            width: 0,
+            color: "#000000"
+          }
+        },
+        opacity: {
+          value: 0.5,
+          random: true,
+          anim: {
+            enable: true,
+            speed: 1,
+            opacity_min: 0.1
+          }
+        },
+        size: {
+          value: 3,
+          random: true,
+          anim: {
+            enable: true,
+            speed: 40,
+            size_min: 0.1
+          }
+        },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#ff9a9e",
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 3
         }
-      }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: {
+            enable: true,
+            mode: "repulse"
+          },
+          onclick: {
+            enable: true,
+            mode: "push"
+          },
+          resize: true
+        },
+        modes: {
+          repulse: {
+            distance: 100,
+            duration: 0.4
+          },
+          push: {
+            particles_nb: 2
+          }
+        }  
+      },
+      retina_detect: true
     });
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -566,6 +693,14 @@
         }
       };
     });
+
+    new Typed("#typed-text", {
+    strings: ["Frontend Developer", "React Enthusiast", "UI Designer"],
+    typeSpeed: 60,
+    backSpeed: 40,
+    backDelay: 1000,
+    loop: true
+  });
   </script>
   <div id="imageModal" class="modal" style="display: none;">
     <span class="close">&times;</span>
