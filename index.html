@@ -862,32 +862,26 @@ building accessible and scalable interfaces with a strong focus on responsive de
     .map(a => document.querySelector(a.getAttribute('href')))
     .filter(Boolean);
 
-  // Clear any pre-existing 'active' on load
   ocLinks.forEach(l => l.classList.remove('active'));
 
-  // Smooth scroll + close offcanvas + set active immediately
   ocLinks.forEach(link => {
     link.addEventListener('click', (e) => {
-      e.preventDefault(); // important!
+      e.preventDefault();
       const target = document.querySelector(link.getAttribute('href'));
       if (!target) return;
 
-      // set active right away
       ocLinks.forEach(l => l.classList.remove('active'));
       link.classList.add('active');
 
-      // smooth scroll
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-      // close the offcanvas
       const ocEl = document.getElementById('mobileMenu');
       const oc = bootstrap.Offcanvas.getOrCreateInstance(ocEl);
       oc.hide();
     });
   });
 
-  // Keep active in sync while scrolling
-  const NAV_OFFSET = 100; // ~ your fixed navbar height
+  const NAV_OFFSET = 100; 
   function setActiveOnScroll() {
     let currentId = null;
     const scrollPos = window.scrollY + NAV_OFFSET;
