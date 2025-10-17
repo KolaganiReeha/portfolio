@@ -204,9 +204,15 @@
       opacity: 0;
       transition: opacity 1s ease-in-out;
     }
+    .offcanvas { z-index: 1060; }         
+    .offcanvas-backdrop { z-index: 1050; }
     .lazy-load.visible {
       opacity: 1;
     }
+    #particles-header, #particles-footer {
+      pointer-events: none;
+    }
+    section[id] { scroll-margin-top: 90px; } 
     .about-me-wrapper {
       display: flex;
       align-items: center;
@@ -221,6 +227,19 @@
       border-radius: 50%;
       object-fit: cover;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+   #mobileMenu .nav-link {
+      color: #004466;
+      border-radius: .5rem;
+      padding: .6rem .9rem;
+      transition: background-color .2s ease, color .2s ease;
+    }
+
+    #mobileMenu .nav-link:hover { transform: none; }
+
+    #mobileMenu .nav-link.active {
+      background-color: #004466 !important;
+      color: #fff !important;
     }
     footer {
       position: relative;
@@ -343,7 +362,7 @@ nav a:hover{
     </div>
   </header>
 
-<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" style="background-color: #004466;">
+<!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" style="background-color: #004466;">
   <div class="container-fluid">
     <div class="d-flex w-100 justify-content-between">
       <a class="nav-link text-white flex-fill text-center fs-4" href="#">Reeha Kolagani</a>
@@ -355,7 +374,47 @@ nav a:hover{
       <button id="theme-toggle">Toggle Theme</button>
     </div>
   </div>
+</nav> -->
+
+<nav class="navbar navbar-expand-xl navbar-light fixed-top py-3" style="background-color:#004466;">
+  <div class="container-fluid">
+    <div class="d-flex w-100 align-items-center justify-content-between">
+      <a class="nav-link text-white flex-fill text-center fs-4 m-0" href="#">Reeha Kolagani</a>
+      <div class="d-none d-xl-flex flex-fill justify-content-between">
+        <a class="nav-link text-white flex-fill text-center fs-4" href="#education">Education</a>
+        <a class="nav-link text-white flex-fill text-center fs-4" href="#skills">Skills</a>
+        <a class="nav-link text-white flex-fill text-center fs-4" href="#experience">Experience</a>
+        <a class="nav-link text-white flex-fill text-center fs-4" href="#projects">Projects</a>
+        <a class="nav-link text-white flex-fill text-center fs-4" href="#cert">Certifications</a>
+      </div>
+
+     <div class="d-flex align-items-center gap-2" style="min-width:fit-content;">
+        <button id="theme-toggle" class="btn btn-sm btn-light">Toggle Theme</button>
+        <button class="navbar-toggler d-xl-none border-0 ms-1" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
+                aria-controls="mobileMenu" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+  </div>
 </nav>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="mobileMenuLabel">Menu</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="navbar-nav">
+      <li class="nav-item"><a class="nav-link fs-5" href="#education" data-bs-dismiss="offcanvas">Education</a></li>
+      <li class="nav-item"><a class="nav-link fs-5" href="#skills" data-bs-dismiss="offcanvas">Skills</a></li>
+      <li class="nav-item"><a class="nav-link fs-5" href="#experience" data-bs-dismiss="offcanvas">Experience</a></li>
+      <li class="nav-item"><a class="nav-link fs-5" href="#projects" data-bs-dismiss="offcanvas">Projects</a></li>
+      <li class="nav-item"><a class="nav-link fs-5" href="#cert" data-bs-dismiss="offcanvas">Certifications</a></li>
+    </ul>
+  </div>
+</div>
 
     <section id="about-me" class="section lazy-load" data-aos="fade-up" data-aos-duration="1000">
       <h2>About Me</h2>
@@ -582,8 +641,8 @@ building accessible and scalable interfaces with a strong focus on responsive de
       </div>
     </section>
 
-    <section class="section lazy-load" data-aos="fade-up" data-aos-duration="1000">
-      <h2 id="cert">Certifications</h2>
+    <section id="cert" class="section lazy-load" data-aos="fade-up" data-aos-duration="1000">
+      <h2>Certifications</h2>
       <ul>
         <li>Java Data Structures & Algorithms (Coursera)</li>
         <li>Full-Stack Web Development Bootcamp</li>
@@ -611,7 +670,6 @@ building accessible and scalable interfaces with a strong focus on responsive de
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     AOS.init(); 
-
     document.addEventListener("DOMContentLoaded", function () {
       const lazyElements = document.querySelectorAll('.lazy-load, .lazy-image');
       const observer = new IntersectionObserver((entries, observer) => {
@@ -780,6 +838,71 @@ building accessible and scalable interfaces with a strong focus on responsive de
       },
       retina_detect: true
     });
+
+    document.getElementById('theme-toggle')?.addEventListener('click', () => {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-bs-theme') === 'dark';
+    html.setAttribute('data-bs-theme', isDark ? 'light' : 'dark');
+  });
+  document.querySelectorAll('#mobileMenu .nav-link[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (!target) return;
+      const ocEl = document.getElementById('mobileMenu');
+      const oc = bootstrap.Offcanvas.getOrCreateInstance(ocEl);
+      oc.hide();
+      setTimeout(() => {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 250); 
+    });
+  });
+
+ const ocLinks = Array.from(document.querySelectorAll('#mobileMenu .nav-link[href^="#"]'));
+  const sections = ocLinks
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+
+  // Clear any pre-existing 'active' on load
+  ocLinks.forEach(l => l.classList.remove('active'));
+
+  // Smooth scroll + close offcanvas + set active immediately
+  ocLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault(); // important!
+      const target = document.querySelector(link.getAttribute('href'));
+      if (!target) return;
+
+      // set active right away
+      ocLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+
+      // smooth scroll
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // close the offcanvas
+      const ocEl = document.getElementById('mobileMenu');
+      const oc = bootstrap.Offcanvas.getOrCreateInstance(ocEl);
+      oc.hide();
+    });
+  });
+
+  // Keep active in sync while scrolling
+  const NAV_OFFSET = 100; // ~ your fixed navbar height
+  function setActiveOnScroll() {
+    let currentId = null;
+    const scrollPos = window.scrollY + NAV_OFFSET;
+
+    for (const sec of sections) {
+      if (sec.offsetTop <= scrollPos) currentId = sec.id;
+    }
+
+    ocLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === `#${currentId}`);
+    });
+  }
+
+  window.addEventListener('scroll', setActiveOnScroll, { passive: true });
+  window.addEventListener('load', setActiveOnScroll);
 
     const toggleBtn = document.getElementById('theme-toggle');
       function updateToggleBtn() {
