@@ -204,9 +204,15 @@
       opacity: 0;
       transition: opacity 1s ease-in-out;
     }
+    .offcanvas { z-index: 1060; }         
+    .offcanvas-backdrop { z-index: 1050; }
     .lazy-load.visible {
       opacity: 1;
     }
+    #particles-header, #particles-footer {
+      pointer-events: none;
+    }
+    section[id] { scroll-margin-top: 90px; } 
     .about-me-wrapper {
       display: flex;
       align-items: center;
@@ -221,6 +227,19 @@
       border-radius: 50%;
       object-fit: cover;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+   #mobileMenu .nav-link {
+      color: #004466;
+      border-radius: .5rem;
+      padding: .6rem .9rem;
+      transition: background-color .2s ease, color .2s ease;
+    }
+
+    #mobileMenu .nav-link:hover { transform: none; }
+
+    #mobileMenu .nav-link.active {
+      background-color: #004466 !important;
+      color: #fff !important;
     }
     footer {
       position: relative;
@@ -343,29 +362,55 @@ nav a:hover{
     </div>
   </header>
 
-<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" style="background-color: #004466;">
+<nav class="navbar navbar-expand-xl navbar-light fixed-top py-3" style="background-color:#004466;">
   <div class="container-fluid">
-    <div class="d-flex w-100 justify-content-between">
-      <a class="nav-link text-white flex-fill text-center fs-4" href="#">Reeha Kolagani</a>
-      <a class="nav-link text-white flex-fill text-center fs-4" href="#education">Education</a>
-      <a class="nav-link text-white flex-fill text-center fs-4" href="#skills">Skills</a>
-      <a class="nav-link text-white flex-fill text-center fs-4" href="#experience">Experience</a>
-      <a class="nav-link text-white flex-fill text-center fs-4" href="#projects">Projects</a>
-      <a class="nav-link text-white flex-fill text-center fs-4" href="#cert">Certifications</a>
-      <button id="theme-toggle">Toggle Theme</button>
+    <div class="d-flex w-100 align-items-center justify-content-between">
+      <a class="nav-link text-white flex-fill text-center fs-4 m-0" href="#">Reeha Kolagani</a>
+      <div class="d-none d-xl-flex flex-fill justify-content-between">
+        <a class="nav-link text-white flex-fill text-center fs-4" href="#education">Education</a>
+        <a class="nav-link text-white flex-fill text-center fs-4" href="#skills">Skills</a>
+        <a class="nav-link text-white flex-fill text-center fs-4" href="#experience">Experience</a>
+        <a class="nav-link text-white flex-fill text-center fs-4" href="#projects">Projects</a>
+        <a class="nav-link text-white flex-fill text-center fs-4" href="#cert">Certifications</a>
+      </div>
+
+     <div class="d-flex align-items-center gap-2" style="min-width:fit-content;">
+        <button id="theme-toggle" class="btn btn-sm btn-light">Toggle Theme</button>
+        <button class="navbar-toggler d-xl-none border-0 ms-1" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
+                aria-controls="mobileMenu" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
     </div>
   </div>
 </nav>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="mobileMenuLabel">Menu</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="navbar-nav">
+      <li class="nav-item"><a class="nav-link fs-5" href="#education" data-bs-dismiss="offcanvas">Education</a></li>
+      <li class="nav-item"><a class="nav-link fs-5" href="#skills" data-bs-dismiss="offcanvas">Skills</a></li>
+      <li class="nav-item"><a class="nav-link fs-5" href="#experience" data-bs-dismiss="offcanvas">Experience</a></li>
+      <li class="nav-item"><a class="nav-link fs-5" href="#projects" data-bs-dismiss="offcanvas">Projects</a></li>
+      <li class="nav-item"><a class="nav-link fs-5" href="#cert" data-bs-dismiss="offcanvas">Certifications</a></li>
+    </ul>
+  </div>
+</div>
 
     <section id="about-me" class="section lazy-load" data-aos="fade-up" data-aos-duration="1000">
       <h2>About Me</h2>
       <div class="about-me-wrapper">
         <img src="pic.jpg" alt="Reeha Kolagani" class="about-me-img">
         <p style="text-align: center;">
-          I'm a Frontend Developer skilled in designing and developing responsive, high performance web applications using React, JavaScript 
-(ES6+), TypeScript, Java and Python. Experienced in UI/UX optimization (20%+ user interaction improvement), performance 
-tuning (30% reduction in page load times), state management (Redux, Context API) and REST API integration. Proficient in  
-building accessible and scalable interfaces with a strong focus on responsive design, version control, testing, Agile methodologies. 
+          I'm a Front End Developer skilled in designing and developing responsive, high performance web applications using  React, JavaScript 
+          (ES6+), Angular, Next.js, Vue.js. Experienced in UI/UX optimization (20%+ user interaction improvement), performance tuning 
+          (30% reduction in page load times), state management (Redux, Context API) and REST API integration. Proficient in  building 
+          accessible and scalable interfaces with a strong focus on responsive design, version control, testing, Agile methodologies.  
         </p>
         <p><a href="Reeha_Resume_Latest@2025.pdf" target="_blank" class="btn-resume">Download My Resume</a></p>
       </div>
@@ -474,7 +519,7 @@ building accessible and scalable interfaces with a strong focus on responsive de
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingFive">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
-              UI/UX Frontend Engineer - Incrivelsoft, USA (May 2025 - Present)
+              UI/UX Frontend Engineer - Incrivelsoft, USA (July 2025 - Present)
             </button>
           </h2>
           <div id="collapseFive" class="accordion-collapse collapse show" aria-labelledby="headingFive" data-bs-parent="#experienceAccordion">
@@ -483,9 +528,10 @@ building accessible and scalable interfaces with a strong focus on responsive de
                 <li>Develop TummyTales, a website designed for pregnant women to ask questions, access resources, and connect with each other.</li>
                 <li> Build responsive, user-friendly UI components using React, TypeScript and Tailwind CSS, ensuring seamless functionality across 
                      all screen sizes. Collaborate with designers to enhance UI/UX accessibility and interaction flow, improving user engagement. </li>
-                <li>Optimize site performance through efficient state management, code splitting, and lazy loading, improving overall load times and 
-                    responsiveness. Conduct debugging and performance audits using Chrome DevTools, enhancing reliability and speed.</li>
-                <li>Technologies: React, TypeScript, Tailwind CSS, React Router, Context API, React Testing Library, Chrome DevTools</li>
+                <li>Developed responsive UI screens for Nutrition, Mental Health, user management, medication, baby checklist, mom-to-mom, 
+askamma, Gamifier, agents and enhanced Your Body and Baby, Essential testing, Profile-setup, and physical agent pages. </li>
+                <li>Technologies: React, TypeScript, Tailwind CSS, React Router, useState and useEffect React hooks, Chrome DevTools. 
+</li>
               </ul>
             </div>
           </div>
@@ -510,16 +556,17 @@ building accessible and scalable interfaces with a strong focus on responsive de
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingSix">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-              Java Full Stack Developer - IBM, India (May 2022 - Jun 2023)
+              Software Developer - IBM, India (Jan 2022 - Jun 2023)
             </button>
           </h2>
           <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#experienceAccordion">
             <div class="accordion-body">
               <ul>
-                <li>Enhanced State Bank of India's YONO (You Only Need One) banking app using Spring Boot and Java 11+</li>
-                <li>Worked on a microservices-based architecture, implementing multiple services communicating via REST and message queues.</li>
-                <li>Integrated Spring Security with JWT for secure APIs. Developed reusable components and utility classes to optimize performance 
-                    and code quality. Participated in Agile ceremonies and collaborated with Angular teams for AWS deployment and UI consistency.</li>
+                <li>Contributed to the State Bank of India’s YONO (You Only Need One) banking app, developing dynamic and responsive user 
+interfaces using AngularJS and Java. Collaborated with cross-functional teams to integrate and test RESTful APIs, ensuring 
+seamless front-end to back-end communication. Optimized front-end rendering, lazy loading to improve load times for services.</li>
+                <li> Enhanced UI consistency, performance, and maintainability by developing reusable Angular components and participating in 
+Agile development sprints.</li>
               </ul>
             </div>
           </div>
@@ -533,8 +580,7 @@ building accessible and scalable interfaces with a strong focus on responsive de
           <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#experienceAccordion">
             <div class="accordion-body">
               <ul>
-                <li>Created single-page apps with AngularJS; improved load speed by 25%</li>
-                <li>Implemented responsive UIs and optimized code for performance</li>
+                <li>Built single-page applications using React, HTML5, CSS, and JavaScript, reducing rendering time by 25% via optimization.</li>
               </ul>
             </div>
           </div>
@@ -582,13 +628,14 @@ building accessible and scalable interfaces with a strong focus on responsive de
       </div>
     </section>
 
-    <section class="section lazy-load" data-aos="fade-up" data-aos-duration="1000">
-      <h2 id="cert">Certifications</h2>
+    <section id="cert" class="section lazy-load" data-aos="fade-up" data-aos-duration="1000">
+      <h2>Certifications</h2>
       <ul>
-        <li>Java Data Structures & Algorithms (Coursera)</li>
-        <li>Full-Stack Web Development Bootcamp</li>
+        <li>The Web Development Bootcamp</li>
         <li>Modern React with Redux and Material UI</li>
+        <li>Modren CSS Techniques with Flexbox/Grid</li>
         <li>Angular with NgRx</li>
+        <li>Java Data Structures & Algorithms (Coursera)</li>
       </ul>
     </section>
   </div>
@@ -611,7 +658,6 @@ building accessible and scalable interfaces with a strong focus on responsive de
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     AOS.init(); 
-
     document.addEventListener("DOMContentLoaded", function () {
       const lazyElements = document.querySelectorAll('.lazy-load, .lazy-image');
       const observer = new IntersectionObserver((entries, observer) => {
@@ -780,6 +826,65 @@ building accessible and scalable interfaces with a strong focus on responsive de
       },
       retina_detect: true
     });
+
+    document.getElementById('theme-toggle')?.addEventListener('click', () => {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-bs-theme') === 'dark';
+    html.setAttribute('data-bs-theme', isDark ? 'light' : 'dark');
+  });
+  document.querySelectorAll('#mobileMenu .nav-link[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (!target) return;
+      const ocEl = document.getElementById('mobileMenu');
+      const oc = bootstrap.Offcanvas.getOrCreateInstance(ocEl);
+      oc.hide();
+      setTimeout(() => {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 250); 
+    });
+  });
+
+ const ocLinks = Array.from(document.querySelectorAll('#mobileMenu .nav-link[href^="#"]'));
+  const sections = ocLinks
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+
+  ocLinks.forEach(l => l.classList.remove('active'));
+
+  ocLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (!target) return;
+
+      ocLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      const ocEl = document.getElementById('mobileMenu');
+      const oc = bootstrap.Offcanvas.getOrCreateInstance(ocEl);
+      oc.hide();
+    });
+  });
+
+  const NAV_OFFSET = 100; 
+  function setActiveOnScroll() {
+    let currentId = null;
+    const scrollPos = window.scrollY + NAV_OFFSET;
+
+    for (const sec of sections) {
+      if (sec.offsetTop <= scrollPos) currentId = sec.id;
+    }
+
+    ocLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === `#${currentId}`);
+    });
+  }
+
+  window.addEventListener('scroll', setActiveOnScroll, { passive: true });
+  window.addEventListener('load', setActiveOnScroll);
 
     const toggleBtn = document.getElementById('theme-toggle');
       function updateToggleBtn() {
